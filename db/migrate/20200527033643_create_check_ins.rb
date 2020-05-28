@@ -6,7 +6,7 @@ class CreateCheckIns < ActiveRecord::Migration[5.2]
       t.integer :nutrition
       t.integer :water
       t.integer :activity
-      t.integer :sleep
+      t.integer :sleep_hours
       t.boolean :did_meditate
       t.integer :meditation_ranking
       t.integer :created_by

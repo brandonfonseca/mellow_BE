@@ -1,13 +1,14 @@
 FactoryBot.define do
   factory :check_in do
-    date_submitted { "2020-05-26" }
-    mood { 1 }
-    nutrition { 1 }
-    water { 1 }
-    activity { 1 }
-    sleep { 1 }
-    didMeditate { false }
-    meditationRanking { 1 }
-    createdBy { 1 }
+    # Faker is used for mocking data
+    date_submitted { Faker::Date.between(from: 7.days.ago, to: Date.today) } 
+    mood { Faker::Number.number(digits: 2) } # number takes argument of length of the number
+    nutrition_rating { Faker::Number.number(digits: 2) }
+    cups_of_water { Faker::Number.number(digits: 2) }
+    activity_rating { Faker::Number.number(digits: 2) }
+    sleep_hours { Faker::Number.number(digits: 2) }
+    did_meditate { true }
+    meditation_rating { Faker::Number.number(digits: 2) }
+    created_by { Faker::Number.number(digits: 2) }
   end
 end

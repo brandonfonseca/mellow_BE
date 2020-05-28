@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class CheckIn < ApplicationRecord
-  validates_presence_of :date_submitted, :mood, :nutrition, :water,
-                        :activity, :sleep, :did_meditate, :meditation_ranking
+  validates_presence_of :date_submitted, :mood, :nutrition_rating, :cups_of_water,
+                        :activity_rating, :sleep_hours, :did_meditate
 end

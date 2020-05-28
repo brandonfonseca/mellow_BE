@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_033643) do
+ActiveRecord::Schema.define(version: 2020_05_28_024107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 2020_05_27_033643) do
   create_table "check_ins", force: :cascade do |t|
     t.date "date_submitted"
     t.integer "mood"
-    t.integer "nutrition"
-    t.integer "water"
-    t.integer "activity"
-    t.integer "sleep"
+    t.integer "nutrition_rating"
+    t.integer "cups_of_water"
+    t.integer "activity_rating"
+    t.integer "sleep_hours"
     t.boolean "did_meditate"
-    t.integer "meditation_ranking"
+    t.integer "meditation_rating"
     t.integer "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Check_ins API', type: :request do
@@ -45,7 +46,7 @@ RSpec.describe 'Check_ins API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find check_in/)
+        expect(response.body).to match(/Couldn't find CheckIn/)
       end
     end
   end
@@ -54,7 +55,7 @@ RSpec.describe 'Check_ins API', type: :request do
   describe 'POST /check_ins' do
     mock_date = '2020-05-01'
     # valid payload
-    let(:valid_attributes) {
+    let(:valid_attributes) do
       { date_submitted: mock_date,
         mood: 1,
         cups_of_water: 2,
@@ -63,7 +64,7 @@ RSpec.describe 'Check_ins API', type: :request do
         nutrition_rating: 5,
         did_meditate: true,
         meditation_rating: 5 }
-      }
+    end
 
     context 'when the request is valid' do
       before { post '/check_ins', params: valid_attributes }
@@ -78,7 +79,7 @@ RSpec.describe 'Check_ins API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before {
+      before do
         post '/check_ins', params: {
           mood: 1,
           cups_of_water: 2,
@@ -88,7 +89,7 @@ RSpec.describe 'Check_ins API', type: :request do
           did_meditate: true,
           meditation_rating: 5
         }
-      }
+      end
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)

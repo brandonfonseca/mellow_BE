@@ -6,6 +6,7 @@ RSpec.describe 'Check_ins API', type: :request do
   # initialize test data
   let!(:check_ins) { create_list(:check_in, 10) }
   let(:check_in_id) { check_ins.first.id }
+  let(:mock_date) { check_ins.first.date_submitted }
 
   # Test suite for GET /check_ins
   describe 'GET /check_ins' do
@@ -47,6 +48,49 @@ RSpec.describe 'Check_ins API', type: :request do
 
       it 'returns a not found message' do
         expect(response.body).to match(/Couldn't find CheckIn/)
+      end
+    end
+  end
+
+  # Test suite for GET /check_ins/between_dates
+  describe 'GET /check_ins/between_dates' do    
+    
+    context 'when the date range is valid and exists' do
+      before { get "/check_ins/between_dates", params: {start_date: mock_date, end_date: mock_date } }
+      
+      it 'returns the check_ins within the date range' do
+        expect(json).not_to be_empty
+        expected_size = check_ins.delete_if {|check_in| check_in["date_submitted"] != mock_date}.length
+        expect(json.length). to eq(expected_size)
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+    
+    context 'when the date range is valid but does not exist' do
+      before { get "/check_ins/between_dates", params: {start_date: '2015-01-01', end_date: '2015-01-01' } }
+      
+      it 'returns the check_ins within the date range' do
+        expect(json).to be_empty
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the date range is invalid' do
+      before { get "/check_ins/between_dates", params: {start_date: '2015-01-01'} }
+      
+      it 'returns error message' do
+        expect(json)
+          .to include("message" => "Invalid date(s)")
+      end
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
       end
     end
   end

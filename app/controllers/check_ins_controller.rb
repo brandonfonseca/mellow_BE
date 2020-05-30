@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 # check_ins controller
 class CheckInsController < ApplicationController
   before_action :set_check_in, only: %i[show update destroy]
@@ -10,9 +12,23 @@ class CheckInsController < ApplicationController
     json_response(@check_ins)
   end
 
+  # GET /check_ins/between_dates
+  def between_date_range
+    response_body = request.query_parameters
+    start_date = response_body["start_date"]
+    end_date = response_body["end_date"]
+    if (!start_date || !end_date) # TODO: check for if the date string is valid
+      json_response({ message: "Invalid date(s)" }, :not_found)
+      return
+    end
+    @check_ins = CheckIn.where(:date_submitted => start_date..end_date )
+    json_response(@check_ins)
+  end
   # POST /check_ins
   def create
     # note that create! causes the model to raise an exception on error
+    # the check_in_params is a callback function that is defined below that ensures that the proper
+    # params are passed in before creating the object
     @check_in = CheckIn.create!(check_in_params)
     json_response(@check_in, :created)
   end

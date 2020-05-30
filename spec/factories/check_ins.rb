@@ -7,7 +7,7 @@ FactoryBot.define do
     cups_of_water { Faker::Number.number(digits: 2) }
     activity_rating { Faker::Number.number(digits: 2) }
     sleep_hours { Faker::Number.number(digits: 2) }
-    did_meditate { true }
+    did_meditate { Faker::Boolean.boolean }
     meditation_rating { Faker::Number.number(digits: 2) }
     created_by { Faker::Number.number(digits: 2) }
   end

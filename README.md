@@ -127,7 +127,7 @@ Response:
 
 #### GET `/check_ins/between_dates` is used for retriving all check_in items between a certain submited_date range
 
-Example:
+**Example**:
 
 
 Request: `/check_ins/between_dates?start_date=2020-01-10&end_date=2020-01-12`

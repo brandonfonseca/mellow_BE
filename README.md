@@ -8,6 +8,8 @@
 
 [Automated Testing](#automated-testing)
 
+[Linting](#linting)
+
 [Endpoints](#endpoints)
 
 

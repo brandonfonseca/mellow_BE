@@ -10,5 +10,4 @@ RSpec.describe CheckIn, type: :model do
   it { should validate_presence_of(:cups_of_water) }
   it { should validate_presence_of(:activity_rating) }
   it { should validate_presence_of(:sleep_hours) }
-  it { should validate_presence_of(:did_meditate) }
 end

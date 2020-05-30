@@ -37,6 +37,10 @@ Throughout my journey thus far I have used several applications for guided medit
 
 - Tried to ensure near **100% test coverage** for all models and endpoints
 
+## Linting
+
+- `ruby-rubocop` was used as the primary linter for this repo
+
 ## Endpoints
 
 ### `/check_ins`

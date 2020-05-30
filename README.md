@@ -1,5 +1,16 @@
 # mellow (back end)
 
+[Background](#background)
+
+[App Architecture](#app-architecture)
+
+[Installation Instructions](#installation-instructions)
+
+[Automated Testing](#automated-testing)
+
+[Endpoints](#endpoints)
+
+
 ## Background
 
 Mental health is a topic that is close to my heart. Recently, I have been doing a lot of research around mindfulness and meditation, and how these simple practices can improve mood, reduce stress, and contribute to an improved sense of wellbeing. 
@@ -12,7 +23,7 @@ Throughout my journey thus far I have used several applications for guided medit
 - Back end built using **Ruby on Rails** (version 5.2.4.3)
 - Front end built using **React + Redux**
 
-## Installation Instructions for this Repo (back end)
+## Installation Instructions
 
 - Install Ruby (version 2.5.1)
 - Install Ruby on Rails (version 5.2.4.3)

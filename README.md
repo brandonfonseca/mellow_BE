@@ -78,7 +78,7 @@ Response:
         "sleep_hours": 8,
         "did_meditate": true,
         "meditation_rating": 3,
-        "created_by": null,
+        "created_by": 5,
         "created_at": "2020-05-30T06:03:43.160Z",
         "updated_at": "2020-05-30T06:03:43.160Z"
     },
@@ -92,13 +92,42 @@ Response:
         "sleep_hours": 8,
         "did_meditate": true,
         "meditation_rating": 2,
-        "created_by": null,
+        "created_by": 7,
         "created_at": "2020-05-30T06:04:34.040Z",
         "updated_at": "2020-05-30T06:04:34.040Z"
     }
 ```
 <br/>
 <br/>
+
+#### **GET** `/check_ins?created_by=[integer]` will return all check_in items created by a certain id
+
+**Example:**
+
+Request: `/check_ins?created_by=7`
+
+Response:
+
+```
+[
+    {
+        "id": 6,
+        "date_submitted": "2020-01-11",
+        "mood": 3,
+        "nutrition_rating": 3,
+        "cups_of_water": 5,
+        "activity_rating": 3,
+        "sleep_hours": 8,
+        "did_meditate": true,
+        "meditation_rating": 2,
+        "created_by": 7,
+        "created_at": "2020-05-30T06:04:34.040Z",
+        "updated_at": "2020-05-30T06:04:34.040Z"
+    }
+]
+```
+
+
 
 #### **POST** `check_ins` is used to create a new entry
 

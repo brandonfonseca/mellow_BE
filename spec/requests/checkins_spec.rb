@@ -72,11 +72,11 @@ RSpec.describe 'Check_ins API', type: :request do
   describe 'GET /check_ins/between_dates' do    
     
     context 'when the date range is valid and exists' do
-      before { get "/check_ins/between_dates", params: {start_date: mock_date, end_date: mock_date } }
+      before { get "/check_ins/between_dates", params: {start_date: mock_date, end_date: mock_date, created_by:  mock_created_by} }
       
       it 'returns the check_ins within the date range' do
         expect(json).not_to be_empty
-        expected_size = check_ins.delete_if {|check_in| check_in["date_submitted"] != mock_date}.length
+        expected_size = check_ins.delete_if {|check_in| (check_in["date_submitted"] != mock_date) || (check_in["created_by"]!= mock_created_by)}.length
         expect(json.length). to eq(expected_size)
       end
 

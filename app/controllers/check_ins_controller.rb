@@ -19,16 +19,23 @@ class CheckInsController < ApplicationController
     json_response(@check_ins)
   end
 
-  # GET /check_ins/between_dates
+  # GET /check_ins/between_dates?created_by=10
   def between_date_range
     response_body = request.query_parameters
+    created_by = response_body["created_by"]
     start_date = response_body["start_date"]
     end_date = response_body["end_date"]
+
     if (!start_date || !end_date) # TODO: check for if the date string is valid
       json_response({ message: "Invalid date(s)" }, :not_found)
       return
     end
-    @check_ins = CheckIn.where(:date_submitted => start_date..end_date )
+    if (created_by)
+      @check_ins = CheckIn.where({date_submitted: start_date..end_date, :created_by => created_by})
+      json_response(@check_ins)
+      return
+    end
+    @check_ins = CheckIn.where({date_submitted: start_date..end_date})
     json_response(@check_ins)
   end
 

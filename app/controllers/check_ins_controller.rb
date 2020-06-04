@@ -8,7 +8,14 @@ class CheckInsController < ApplicationController
 
   # GET /check_ins
   def index
-    @check_ins = CheckIn.all
+    response_body = request.query_parameters
+    created_by = response_body["created_by"]
+    if !created_by
+      @check_ins = CheckIn.all
+      json_response(@check_ins)
+      return
+    end
+    @check_ins = CheckIn.where(:created_by => created_by)
     json_response(@check_ins)
   end
 
@@ -24,6 +31,7 @@ class CheckInsController < ApplicationController
     @check_ins = CheckIn.where(:date_submitted => start_date..end_date )
     json_response(@check_ins)
   end
+
   # POST /check_ins
   def create
     # note that create! causes the model to raise an exception on error

@@ -7,6 +7,7 @@ RSpec.describe 'Check_ins API', type: :request do
   let!(:check_ins) { create_list(:check_in, 10) }
   let(:check_in_id) { check_ins.first.id }
   let(:mock_date) { check_ins.first.date_submitted }
+  let(:mock_created_by) {check_ins.first.created_by}
 
   # Test suite for GET /check_ins
   describe 'GET /check_ins' do
@@ -17,6 +18,21 @@ RSpec.describe 'Check_ins API', type: :request do
       # Note `json` is a custom helper to parse JSON responses
       expect(json).not_to be_empty
       expect(json.size).to eq(10)
+    end
+
+    it 'returns status code 200' do
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'GET /check_ins?created_by=[number]' do
+    # make HTTP get request before each example
+    before { get '/check_ins', params: {created_by: mock_created_by} }
+
+    it 'returns the check_ins with the passed created_by id' do
+      expect(json).not_to be_empty
+      expected_size = check_ins.delete_if {|check_in| check_in["created_by"] != mock_created_by}.length
+      expect(json.length). to eq(expected_size)
     end
 
     it 'returns status code 200' do

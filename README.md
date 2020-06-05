@@ -17,7 +17,7 @@
 
 Mental health is a topic that is close to my heart. Recently, I have been doing a lot of research around mindfulness and meditation, and how these simple practices can improve mood, reduce stress, and contribute to an improved sense of wellbeing. 
 
-Throughout my journey thus far I have used several applications for guided meditation and mindfulness. While mindfulness applications (such as Headspace) are amazing for guided meditations, they often lack features around tracking wellness, mood, and past meditations. Therefore, I set out to build an application that not only provides tools during meditation, but also helps track the quality of your meditations over time. Additionally, the app aims to track other physical factors, such as water intake and daily exercise, to how these practices map to your daily mood over time.
+Throughout my journey thus far I have used several applications for guided meditation and mindfulness. While mindfulness applications (such as Headspace) are amazing for guided meditations, they often lack features around tracking wellness, mood, and past meditations. Therefore, I set out to build an application that not only provides tools during meditation, but also helps track the quality of your meditations over time. Additionally, the app aims to track how other physical factors, such as water intake and daily exercise, contributes to your daily mood over time.
 
 ## App Architecture
 
